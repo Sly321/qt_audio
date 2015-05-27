@@ -6,9 +6,12 @@ var musik2 = new AudioDatei("am.mp3");
 musik.init();
 musik2.init();
 var cf = new Crossfader(musik, musik2);
+
 /** Setzt die Zeitupdates bei veränderungen in den <p> damit man sieht wo man ist können wir
 	dann mit variablen machen damit da evtl sich div's oder so bewegen. */
-musik.audio.ontimeupdate = function() {
-	document.getElementById("informations").innerHTML = musik.informations(); };
-musik2.audio.ontimeupdate = function() {
-	document.getElementById("informations2").innerHTML = musik2.informations(); };
+var updateTimer = setInterval(update, 0.1);
+
+function update() {
+	document.getElementById("informations").innerHTML = musik.informations();
+	document.getElementById("informations2").innerHTML = musik2.informations();
+}
