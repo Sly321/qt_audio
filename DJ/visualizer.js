@@ -12,8 +12,7 @@ gradient.addColorStop(0, "#ffffff");
 //gradient.addColorStop(0.5, "#FF7E43");
 //gradient.addColorStop(0.6, "#CE5A1F");
 //gradient.addColorStop(0.7, "#000000");
-gradient.addColorStop(0.8, "#ffffff");
-gradient.addColorStop(1, "#161618");
+gradient.addColorStop(1, "#ffffff");
 
 musik.processor.onaudioprocess = function()
 {
