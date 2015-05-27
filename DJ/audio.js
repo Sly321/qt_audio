@@ -58,8 +58,9 @@ AudioDatei.prototype.playPauseTrigger = function(btn)
 /**
  * Setzt die Audio Datei auf anfang und pausiert sie.
  */
-AudioDatei.prototype.stop = function()
+AudioDatei.prototype.stop = function(stopbtn, playbtn)
 {
+	playbtn.innerHTML = "►";
 	this.audio.currentTime = 0;
 	this.audio.pause();
 	this.isPlaying = false;
@@ -86,9 +87,11 @@ AudioDatei.prototype.informations = function()
  * Setzt die Lautstärke der Audiodatei auf den Wert den übergebenen Sliders.
  * Die Funktion wird so aufgerufen im slider: onchange="musik2.volume(this);"
  */
-AudioDatei.prototype.volume = function(slider)
+AudioDatei.prototype.volume = function(slider, span)
 {
-	this.audio.volume = slider.value / 100;
+	var value = slider.value / 100;
+	this.audio.volume = value;
+	span.innerHTML = slider.value + "%";
 };
 
 /**
@@ -111,9 +114,11 @@ AudioDatei.prototype.loop = function(button)
  * Der Slider wird als Object übergeben Bsp: onchange="musik.tempo(this);"
  * Die funktion teilt die Value durch 100 und passt die Audio an.
  */
-AudioDatei.prototype.tempo = function(slider)
+AudioDatei.prototype.tempo = function(slider, span)
 {
-	this.audio.playbackRate = slider.value / 100;
+	var value = slider.value / 100;
+	this.audio.playbackRate = value;
+	span.innerHTML = value.toFixed(2)
 };
 
 /**
@@ -121,7 +126,7 @@ AudioDatei.prototype.tempo = function(slider)
  * Wird dann am ende soweit connected das nen Signal reinkommt,
  * es bearbeitet wird, und wieder rauskommt.
  */
-AudioDatei.prototype.equalizerHigh = function(slider)
+AudioDatei.prototype.equalizer = function(slider)
 {
 	this.gain = this.context.createGain();
 
@@ -174,11 +179,13 @@ AudioDatei.prototype.equalizerHigh = function(slider)
  * Ändert den Equalizer für High anhand eines Sliders.
  * Beim Slider mit onchange="musik.changeGainHigh(this)"; verbinden.
  */
-AudioDatei.prototype.changeGainHigh = function(slider)
+AudioDatei.prototype.changeGainHigh = function(slider, para)
 {
 	var value = String('000' + parseFloat(slider.value)).slice(-3);
 	var db = 20 * Math.log10(value/100);
 	db = db.toFixed(2);
+	
+	para.innerHTML = "<br><br>" + db + " db<br>" + value + " %";
 
 	console.log("DB: " + db);
 	console.log("Value: " + value);
@@ -190,11 +197,13 @@ AudioDatei.prototype.changeGainHigh = function(slider)
  * Ändert den Equalizer für Mid anhand eines Sliders.
  * Beim Slider mit onchange="musik.changeGainMid(this)"; verbinden.
  */
-AudioDatei.prototype.changeGainMid = function(slider)
+AudioDatei.prototype.changeGainMid = function(slider, para)
 {
 	var value = String('000' + parseFloat(slider.value)).slice(-3);
 	var db = 20 * Math.log10(value/100);
 	db = db.toFixed(2);
+	
+	para.innerHTML = "<br><br>" + db + " db<br>" + value + " %";
 
 	console.log("DB: " + db);
 	console.log("Value: " + value);
@@ -206,11 +215,13 @@ AudioDatei.prototype.changeGainMid = function(slider)
  * Ändert den Equalizer für Mid anhand eines Sliders.
  * Beim Slider mit onchange="musik.changeGainLow(this)"; verbinden.
  */
-AudioDatei.prototype.changeGainLow = function(slider)
+AudioDatei.prototype.changeGainLow = function(slider, para)
 {
 	var value = String('000' + parseFloat(slider.value)).slice(-3);
 	var db = 20 * Math.log10(value/100);
 	db = db.toFixed(2);
+	
+	para.innerHTML = "<br><br>" + db + " db<br>" + value + " %";
 
 	console.log("DB: " + db);
 	console.log("Value: " + value);
@@ -223,7 +234,7 @@ AudioDatei.prototype.changeGainLow = function(slider)
  */
 AudioDatei.prototype.init = function()
 {
-	this.equalizerHigh();
+	this.equalizer();
 	this.source.connect(this.gain);
 	this.out.connect(this.analyzer);
 	this.out.connect(this.context.destination);
@@ -251,6 +262,8 @@ Crossfader.prototype.change = function(slider)
 	var volLeft = Math.cos(value * 0.5 * Math.PI);
 	var volRight = Math.cos((1.0 - value) * 0.5 * Math.PI);
 
+	console.log("left: " + volLeft + " right: " + volRight);
+	
 	this.musik1.source.gain.value = volLeft;
 	this.musik2.source.gain.value = volRight;
 };
