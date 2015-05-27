@@ -85,3 +85,17 @@ input.vertical {
   width: 100px;
   height: 50px;
 }
+
+#visualizer1 {
+	width: 250;
+	height: 144;
+	position: absolute;
+	left: -130px;
+}
+
+#visualizer2 {
+	width: 250;
+	height: 144;
+	position: absolute;
+	left: 200px;
+}

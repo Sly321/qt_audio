@@ -242,6 +242,7 @@ AudioDatei.prototype.init = function()
 	this.processor.connect(this.context.destination);
 };
 
+
 /**
  * Objekt für den Crossfader, bekommt die beiden Musik Objekte damit er deren
  * Audioausgänge bearbeiten kann.
