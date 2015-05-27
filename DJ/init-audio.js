@@ -1,6 +1,6 @@
 /** Erstellen der Objecte mit den Audiodatei url */
-var musik = new AudioDatei("wknd.mp3");
-var musik2 = new AudioDatei("am.mp3");
+var musik = new AudioDatei("comwws.mp3");
+var musik2 = new AudioDatei("eott.mp3");
 
 /** Initialisiert so einiges damit die Musik dann auch dort rauskommt wo und wie sie soll - need */
 musik.init();
