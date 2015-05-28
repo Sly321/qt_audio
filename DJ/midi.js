@@ -6,7 +6,7 @@ function midicontrollerEingebunden(midisource)
 	for(var input of inputs.values())
 	{
 		input.addEventListener('midiListener', midiListener);
-		input.addEventListener('disconnect', midiDisconnect);
+		console.log("Test du Fotze!");
 	}
 }
 
@@ -34,6 +34,7 @@ function initmidi()
 
 function midiListener(event)
 {
+	console.log("Event");
 	// Event fuer den Crossfader
 	if (event.data[0] == 176 && event.data[1] == 8)
 	{
@@ -166,4 +167,3 @@ function midiListener(event)
 		musik2.tempo(slider);
 	}
 }
-
