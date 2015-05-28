@@ -187,9 +187,6 @@ AudioDatei.prototype.changeGainHigh = function(slider, para)
 	
 	para.innerHTML = "<br><br>" + db + " db<br>" + value + " %";
 
-	console.log("DB: " + db);
-	console.log("Value: " + value);
-
 	this.high.gain.value = value / 100;
 };
 
@@ -205,9 +202,6 @@ AudioDatei.prototype.changeGainMid = function(slider, para)
 	
 	para.innerHTML = "<br><br>" + db + " db<br>" + value + " %";
 
-	console.log("DB: " + db);
-	console.log("Value: " + value);
-
 	this.mid.gain.value = value / 100;
 };
 
@@ -222,9 +216,6 @@ AudioDatei.prototype.changeGainLow = function(slider, para)
 	db = db.toFixed(2);
 	
 	para.innerHTML = "<br><br>" + db + " db<br>" + value + " %";
-
-	console.log("DB: " + db);
-	console.log("Value: " + value);
 
 	this.low.gain.value = value / 100;
 };
@@ -262,8 +253,6 @@ Crossfader.prototype.change = function(slider)
 	var value =	parseInt(slider.value) / parseInt(slider.max);
 	var volLeft = Math.cos(value * 0.5 * Math.PI);
 	var volRight = Math.cos((1.0 - value) * 0.5 * Math.PI);
-
-	console.log("left: " + volLeft + " right: " + volRight);
 	
 	this.musik1.source.gain.value = volLeft;
 	this.musik2.source.gain.value = volRight;
