@@ -170,18 +170,20 @@ function MIDIMessageEventHandler(event) {
 	// Tempo musik1
 	if (event.data[0] == 176 && event.data[1] == 50)
 	{
+		console.log("Value" + event.data[2]);
 		var slider 		= document.getElementById('tempo1');
 		var span		= document.getElementById('tmp1span');
-		slider.value 	= event.data[2] / 127 * 100;
+		slider.value 	= event.data[2] / 127 * 100 + 50;
 		musik.tempo(slider, span);
 	}
 
 	// Tempo musik2
 	if (event.data[0] == 176 && event.data[1] == 51)
 	{
+		console.log("Value" + event.data[2]);
 		var slider 		= document.getElementById('tempo2');
 		var span		= document.getElementById('tmp2span');
-		slider.value 	= event.data[2] / 127 * 100;
+		slider.value 	= event.data[2] / 127 * 100 + 50;
 		musik2.tempo(slider, span);
 	}
 }

@@ -1,6 +1,6 @@
 
 body {
-  margin-top: 100px;
+  margin-top: 50px;
   width: 1024px;
   margin-left: auto;
   margin-right: auto;
@@ -78,6 +78,11 @@ body {
 .file_upload {
   margin-top: 20px;
   margin-left: 20%;
+}
+
+.file_upload2 {
+  margin-top: 20px;
+  margin-left: 40%;
 }
 
 input.vertical {
